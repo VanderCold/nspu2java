@@ -92,7 +92,7 @@ class progII {
 		b11 = 10;
 		i11 = b11 * b11;
 
-		b11 = 100;
+		b11 = 10;
 		b11 = (byte)(b11 * b11);
 		System.out.println("i11 и b11: " + i11 + " " + b11);
 	}
