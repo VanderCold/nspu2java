@@ -134,8 +134,11 @@ class pr_trilogy {
 
 		//Бесконечный цикл Бесконечный цикл Бесконечный цикл Бесконечный цикл Бесконечный цикл Бесконечный цикл Бесконечный цикл Бесконечный цикл
 		System.out.println("\n");
-		//for (;;);
-	
+		for (;;){
+			ch = (char) System.in.read();
+			if(ch == 'q') break;
+		}
+
 		int sum = 0;
 		//Вычисление сумм чисел от 1 до 5
 		for(i8 = 1; i8 <= 5; sum+= i8++);
@@ -169,6 +172,28 @@ class pr_trilogy {
 				ignore = (char) System.in.read();
 			} while (ignore != '\n');
 		} while (ch != 'q');
+		//Оператор break
+		System.out.println("\n");
 
+                for (x1 = 100; x1 > -100; x1 -= 5) {
+                        System.out.println(x1);
+			if (x1 == 50) break; 
+		}
+
+                System.out.println("\n");
+		
+		//break с вложенными циклами
+		for (int i9 = 0; i9 < 3; i9++) {
+			System.out.println("Счетчик внешнего цикл: " + i9);
+			System.out.print("Счетчик внутреннего цикла: ");
+			int t = 0;
+			while (t < 100) {
+				if(t == 10) break;
+				System.out.print(t + " ");
+				t++;
+			}
+			System.out.println();
+		}
+		System.out.println("Циклы закончились");
 	}
 }
