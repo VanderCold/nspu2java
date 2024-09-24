@@ -113,8 +113,12 @@ class pr_trilogy {
 		System.out.println("\n");
 		
 		int i8;
+		char ignore;
 		System.out.println("Для остановки цикла нажмите клавишу \"S\"");
 		for (i8 = 0; (char) System.in.read() != 'S'; i8++)
+                        do {
+                                ignore = (char) System.in.read();
+                        } while (ignore != '\n');
 			System.out.println("Итерация №" + i8);
 
 		for (i8 = 0; i8 < 10;) {
@@ -157,5 +161,14 @@ class pr_trilogy {
 			}
 			System.out.println("2 в степени " + i9 + " равно " + result);
 		}
+		//Цикл do while
+		do {
+			System.out.print("Нажните клавишу: ");
+			ch = (char) System.in.read();
+			do {
+				ignore = (char) System.in.read();
+			} while (ignore != '\n');
+		} while (ch != 'q');
+
 	}
 }
