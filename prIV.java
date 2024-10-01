@@ -2,6 +2,10 @@ class Avtomobil {
 	int pass; //кол-во пассажиров
 	int v; // объем
 	double rash; //расход на 100 км
+	
+	void rasst() {
+		System.out.println("Расстояние: " + ((int)(v/rash * 100)));
+	}
 }
 class prIV {
 	public static void main(String args[]) {
@@ -20,10 +24,12 @@ class prIV {
 		porshe.rash = 14.0;
 
 		//Определяем расстояние
-		rasst = (int)(lada.v/lada.rash * 100);
-		rasst2 = (int)(porshe.v/porshe.rash * 100);
+		//rasst = (int)(lada.v/lada.rash * 100);
+		//rasst2 = (int)(porshe.v/porshe.rash * 100);
 
-		System.out.println("Lada проедет: " + rasst + " км.");
-		System.out.println("Porshe проедет: " + rasst2 + " км.");
+		System.out.print("Для Lada: ");
+		lada.rasst();
+		System.out.println("Для Porshe: ");
+		porshe.rasst();
 	}
 }
