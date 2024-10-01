@@ -195,5 +195,57 @@ class pr_trilogy {
 			System.out.println();
 		}
 		System.out.println("Циклы закончились");
+		//Использование оператора break с меткой
+		System.out.println("\n");
+		for (int i9=1; i9<4; i9++) {
+one:			{
+two:				{
+three:					{
+						System.out.println("\ni9 равно: " + i9);
+						if(i9 == 1) break one;
+						if(i9 == 2) break two;
+						if(i9 == 3) break three;
+						//Не выводится строка:
+						System.out.println("Окончание цикла!");
+					}
+					System.out.println("После блока 3");
+				}
+				System.out.println("После блока 2");
+			}
+			System.out.println("После блока 1");
+		}
+		System.out.println("После цикла for с метками");
+		//Второй пример 
+		System.out.println("\n");
+		{
+done:
+			for(int i9=0; i9<10; i9++) {
+				for(int j9=0; j9<10; j9++) {
+					for(int k9=0; k9<10; k9++) {
+						System.out.println(k9 + " ");
+						if(k9 == 5) break done;
+					}
+					System.out.println("После цикла k9");
+				}
+				System.out.println("После цикла j9");
+			}
+			System.out.println("После цикла i9");
+		}
+		//Третий пример
+		System.out.println("\n");
+		//Метка перед оператором for
+stop1:		for(int i9=0; i9<5; i9++) {
+			for(int j9=0; j9<5; j9++) {
+				if(j9 == 2) break stop1;
+				System.out.println("i9 и j9: " + i9 + " " + j9);
+			}
+		}
+	        for(int i9=0; i9<5; i9++)
+stop2:          {
+			for(int j9=0; j9<5; j9++) {
+                                if(j9 == 2) break stop2;
+                                System.out.println("i9 и j9: " + i9 + " " + j9);
+                        }
+                }
 	}
 }
