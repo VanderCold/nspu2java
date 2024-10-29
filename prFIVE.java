@@ -279,6 +279,30 @@ class Arrays {
 		System.out.println("Список агрументов: ");
 		for (String s : args)
 			System.out.println(s);
+
+		System.out.println();
+		//Поиск строки в справочнике
+		String[][] numbers = {
+			{"Поликлиника", "148-82-28"},
+			{"Энергосбыт", "137-78-93"},
+			{"Управляющая компания", "342-23-12"},
+			{"Энергетическая компания", "432-89-25"}
+		};
+		int i12;
+
+		if (args.length != 1)
+			System.out.println("Задайте 1 аргумент при запуске программы: ");
+		else {
+			for (i12=0; i12 < numbers.length; i12++) {
+				if (numbers[i12][0].equals(args[0])) {
+					System.out.println(numbers[i12][0] + ": " + numbers[i12][1]);
+				break;
+				}
+
+			}
+			if (i12 == numbers.length)
+				System.out.println("Строка не найдена");
+		}
 	}
 }
 
