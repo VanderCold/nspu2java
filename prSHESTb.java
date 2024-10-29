@@ -96,5 +96,19 @@ class prSHESTb {
                         System.out.println();
 			v = v >> 1;
                 }
+
+		//??????
+		System.out.println();
+		//blah-blah1 ? blah-blah2 : blah-blah3
+		int val2 = -25;
+		int abosval = val2 < 0 ? -val2 : val2;
+
+		int result;
+		for (int i = -5; i < 6; i++) {
+			result = i != 0 ? 100 / i : 0;
+			if (i != 0)
+				System.out.println("100 / " + i + " = " + result);	
+		}
+		System.out.println();
 	}
 }
