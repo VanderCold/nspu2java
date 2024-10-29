@@ -1,15 +1,15 @@
 //Очередь
 class Queue {
-	char[] q;
-	int putloc, getloc; //указатели
-	Queue (int size) {
+	private char[] q;
+	private int putloc, getloc; //указатели
+	public Queue (int size) {
 		q = new char[size];
 		putloc = getloc = 0;
 		
 	}
 
 	//Метод для помещения символа в очередь
-	void put(char ch) {
+	public void put(char ch) {
 		if(putloc == q.length) {
 			System.out.println(" - очередь переполнена!");
 			return;
@@ -18,7 +18,7 @@ class Queue {
 	}
 
 	//Метод для извлечения символа из очереди
-	char get() {
+	public char get() {
 		if(getloc == putloc) {
 			System.out.println(" - очередь пуста");
 			return (char) 0;
