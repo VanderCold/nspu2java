@@ -9,6 +9,30 @@ class Mod {
 			return alpha;
 		}
 }
+//Передача объектов
+class Block {
+	int a, b, c;
+	int V;
+	
+	Block(int i, int j, int k) {
+		a = i;
+		b = j;
+		c = k;
+		V = a * b * c;
+	}
+
+	//Проверка эквивалетности двух блоков
+	boolean sameBlock(Block ob) {
+		if ((ob.a == a) & (ob.b == b) & (ob.c == c)) return true;
+		else return false;
+	}
+	//Проверка равенства V
+	boolean sameV(Block ob) {
+		if(ob.V == V) return true;
+		else return false;
+	}
+}
+
 class Farray { //F
 	private int[] a;
 	private int errorVal;
@@ -40,6 +64,63 @@ class Farray { //F
 		return false;
 	}
 }	
+class CallByValue {
+	void noChange(int i11, int j11) {
+		i11 = i11 * j11;
+		j11 = -j11;
+	}
+}
+class CallByRef {
+	int a12, b12;
+	CallByRef (int i12, int j12) {
+		a12 = i12;
+		b12 = j12;
+	}
+        void change(CallByRef ob5) {
+                ob5.a12 = ob5.a12 + ob5.b12;
+                ob5.b12 = -ob5.b12;
+        }
+}
+
+class ErrorMsg {
+	String[] msgs = {
+		"ERROR Вывод",
+		"Error ввод",
+		"Нет памяти",
+		"Вне границ"
+	};
+	String getErrorMsg(int i13) {
+		if (i13>=0 & i13<msgs.length) return msgs[i13];
+		else return "Осутствует код для ошибки";
+	}
+}
+
+class Err {
+	String msg;
+	int severity;
+	Err(String m, int s) {
+		msg = m;
+		severity = s;
+	}
+}
+
+class ErrorInfo {
+        String[] msgs2 = {
+                "ERROR Вывод",
+                "Error ввод",
+                "Нет памяти",
+                "Вне границ"
+        };
+	int[] howBad = {3,3,2,4};
+	Err getErrorInfo(int i14) {
+		if (i14 >= 0 & i14 < msgs2.length)
+			return new Err(msgs2[i14], howBad[i14]);
+		else
+			return new Err("Ошбка непонятна", 0);
+	}
+}
+
+
 class pr7evilExes {
 	public static void main(String[] args) {
 		Mod ob = new Mod();
@@ -73,5 +154,44 @@ class pr7evilExes {
 				System.out.println("Индекс " + i + " выходит за границы");
                 }
 		System.out.println();
+
+		System.out.println();
+		Block ob1 = new Block(10, 2, 5);
+		Block ob2 = new Block(10, 2, 5);
+		Block ob3 = new Block(4, 5, 5);
+		System.out.println("ob2: " + ob1.sameBlock(ob2));
+		System.out.println("ob3: " + ob1.sameBlock(ob3));
+		System.out.println("ob3 V: " + ob1.sameV(ob3));
+		
+		System.out.println();
+		CallByValue ob4 = new CallByValue();
+		int a11 = 15, b11 = 20;
+
+		System.out.println("a11 & b11 before: " + a11 + " " + b11);
+
+		ob4.noChange(a11, b11);
+		System.out.println("a11 & b11 after: " + a11 + " " + b11);
+		
+		System.out.println();
+		CallByRef ob6 = new CallByRef(15, 20);
+
+		System.out.println("a12 & b12 before: " + ob6.a12 + " " + ob6.b12);
+		ob6.change(ob6);
+		System.out.println("a12 & b12 after: " + ob6.a12 + " " + ob6.b12);
+		
+		ErrorMsg err = new ErrorMsg();
+
+		System.out.println(err.getErrorMsg(2));
+		System.out.println(err.getErrorMsg(20));
+		
+		System.out.println();
+
+		ErrorInfo err2 = new ErrorInfo();
+		Err e;
+		e = err2.getErrorInfo(2);
+		System.out.println(e.msg + ", уровень: " + e.severity);
+		e = err2.getErrorInfo(20);
+                System.out.println(e.msg + ", уровень: " + e.severity);
 	}
 }
+
