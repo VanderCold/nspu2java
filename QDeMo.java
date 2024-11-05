@@ -2,10 +2,28 @@
 class Queue {
 	private char[] q;
 	private int putloc, getloc; //указатели
+
 	public Queue (int size) {
 		q = new char[size];
 		putloc = getloc = 0;
 		
+	}
+
+	Queue(Queue ob) {
+		putloc = ob.putloc;
+		getloc = ob.getloc;
+		q = new char[ob.q.length];
+		for (int i = getloc; i < putloc; i++)
+			q[i] = ob.q[i];
+	}
+
+	Queue(char[] a) {
+		putloc = 0;
+		getloc = 0;
+		q = new char[a.length];
+
+		for (int i = 0; i < a.length; i++)
+			put(a[i]);
 	}
 
 	//Метод для помещения символа в очередь
@@ -34,6 +52,8 @@ class QDeMo {
 		char ch;
 		int i;
 
+		System.out.println();
+
 		System.out.println("Использование очереди bigQ для сохранения символов");
 		for (i = 0; i < 26; i++)
 			bigQ.put((char) ('A' + i));
@@ -58,5 +78,37 @@ class QDeMo {
 			ch = smallQ.get();
 			if (ch != (char) 0) System.out.print(ch);
 		}
+
+		//
+
+		Queue q1 = new Queue(10);
+		char[] name = {'I', 'v', 'a', 'n'};
+
+		Queue q2 = new Queue(name);
+		int i2;
+		for (i2 = 0; i2 < 10; i2++)
+			q1.put((char) ('A' + i2));
+		Queue q3 = new Queue(q1);
+		
+		System.out.println("Внутри q1: ");
+		for (i2 = 0; i2 < 10; i2++) {
+                        ch = q1.get();
+                	System.out.print(ch);
+		}
+		System.out.println("\n");
+		
+		System.out.println("Внутри q2: ");
+		for (i2 = 0; i2 < 4; i2++) {
+                        ch = q2.get();
+                        System.out.print(ch);
+                }
+                System.out.println("\n");
+
+                System.out.println("Внутри q3: ");
+		for (i2 = 0; i2 < 10; i2++) {
+                        ch = q3.get();
+                        System.out.print(ch);
+                }
+                System.out.println("\n");
 	}
 }
