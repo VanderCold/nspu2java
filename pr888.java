@@ -26,6 +26,41 @@ class StaticDemo {
 	}
 }
 
+class Outer {
+	int[] nums;
+	Outer(int[] n) {
+		nums = n;
+	}
+
+	void analyze() {
+		Inner inOb = new Inner();
+		System.out.println("Минимальное значение: " + inOb.min());
+		System.out.println("Максимальное значение: " + inOb.max());
+		System.out.println("Среднее значение: " + inOb.avg());
+	}
+
+	class Inner {
+		int min() {
+			int m = nums[0];
+			for (int i = 1; i < nums.length; i++)
+				if (nums[i] < m) m = nums[i];
+			return m;
+		}
+		int max() {
+                        int m = nums[0];
+                        for (int i = 1; i < nums.length; i++)
+                                if (nums[i] > m) m = nums[i];
+                        return m;
+                }
+		int avg() {
+                        int a = 0;
+                        for (int i = 0; i < nums.length; i++)
+                                a +=  nums[i];
+                        return a/nums.length;
+                }
+	}
+}
+
 class StaticBlock {
 	static double rootOf2;
 	static double rootOf3;
@@ -37,6 +72,44 @@ class StaticBlock {
 	StaticBlock(String msg) {
 		System.out.println(msg);
 	}
+}
+
+class VarArgs {
+	static void vaTest(int ... v) {
+		System.out.println("Кол-во аргументов: " + v.length);
+		System.out.println("Содержимое: ");
+		for (int i = 0; i < v.length; i++)
+			System.out.println(" аргумент " + i + ": " + v[i]);
+		System.out.println();
+	}
+	static void vaTest2(String msg, int ... v) {
+		System.out.println(msg + v.length);
+		for (int i = 0; i < v.length; i++)
+                        System.out.println(" аргумент " + i + ": " + v[i]);
+                System.out.println();
+	}
+	static void vaTest3( int ... v) {
+                System.out.println("vaTest3(int ...)" + " Кол-во аргументов: " + v.length);
+		System.out.println("Содержимое: ");
+                for (int i = 0; i < v.length; i++)
+                        System.out.println(" аргумент " + i + ": " + v[i]);
+                System.out.println();
+        }
+	static void vaTest3( boolean ... v) {
+                System.out.println("vaTest3(boolean ...)" + " Кол-во аргументов: " + v.length);
+                System.out.println("Содержимое: ");
+                for (int i = 0; i < v.length; i++)
+                        System.out.println(" аргумент " + i + ": " + v[i]);
+                System.out.println();
+        }
+	static void vaTest3(String msg, int ... v) {
+                System.out.println("vaTest3(String, int  ...)" + " Кол-во аргументов: " + v.length);
+                System.out.println("Содержимое: ");
+                for (int i = 0; i < v.length; i++)
+                        System.out.println(" аргумент " + i + ": " + v[i]);
+                System.out.println();
+        }
+
 }
 
 class pr888 {
@@ -88,5 +161,67 @@ class pr888 {
 
 		System.out.println("Корень из 2: " + StaticBlock.rootOf2);
 		System.out.println("Корень из 3: " + StaticBlock.rootOf3);
+		
+		System.out.println();
+
+		//
+
+		int[] x = {3, 2, 1, 5, 6, 9, 7, 2};
+		Outer outOb = new Outer(x);
+
+		outOb.analyze();
+		
+		class ShowBt {
+			int numbits;
+			ShowBt(int n) {
+				numbits = n;
+			}
+			void show(long val) {
+				long mask = 1;
+				mask <<= numbits-1;
+
+				int spacer = 0;
+				for(;mask!=0; mask>>=1) {
+					if((val & mask) != 0)
+						System.out.print("1");
+					else
+						System.out.print("0");
+					spacer++;
+					if((spacer%8) == 0) {
+						System.out.print(" ");
+						spacer = 0;
+					}
+				}
+			System.out.println();
+			}
+		}
+		System.out.println();
+		for (byte b = 0; b < 10; b++) {
+			ShowBt byteval = new ShowBt(8);
+			System.out.print(b + " в десятичном виде: ");
+			byteval.show(b);
+		}
+		
+		System.out.println();
+
+		//
+
+		VarArgs.vaTest(10);
+		VarArgs.vaTest(1, 2, 3);
+		VarArgs.vaTest();
+
+		System.out.println();
+
+		VarArgs.vaTest2("1 аргумент: ", 10);
+                VarArgs.vaTest2("2 аргумента: ", 1, 2, 3);
+                VarArgs.vaTest2("Без аргументов");
+		
+		System.out.println();
+
+		//
+
+		VarArgs.vaTest3(10, 20);
+                VarArgs.vaTest3("2 аргумента: ", 1, 2, 3);
+                VarArgs.vaTest3(true, false, false);
 	}
 }
