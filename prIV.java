@@ -1,7 +1,7 @@
 class Avtomobil {
-	int pass; //кол-во пассажиров
-	int v; // объем
-	double rash; //расход на 100 км
+	private int pass; //кол-во пассажиров
+	private int v; // объем
+	private double rash; //расход на 100 км
 	
 	Avtomobil(int p, int V, double r) {
 		pass = p;
@@ -19,6 +19,40 @@ class Avtomobil {
 	double fuelNeeded(int km) {
 		return ((double)km/100)*rash;
 	}
+
+	int getPass() {
+		return pass;
+	}
+	void setPass(int p) {
+		pass = p;
+	}
+	int getV() {
+		return v;
+	}
+	void setV(int V) {
+		v = V;
+	}
+	double getRash() {
+		return rash;
+	}
+	void setRash (double r) {
+		rash = r;
+	}
+}
+
+class Truck extends Avtomobil {
+	private int cargocap;
+	Truck(int p, int V, double r, int c) {
+		super(p, V, r);
+		cargocap = c;
+	}
+
+	int getCargo() {
+		return cargocap;
+	}
+	void putCargo(int c) {
+		cargocap = c;
+	}
 }
 
 class prIV {
@@ -26,6 +60,10 @@ class prIV {
 		//Создание экземпляра класса
 		Avtomobil lada = new Avtomobil(4, 40, 5.5);
 		Avtomobil porshe = new Avtomobil(1, 100, 14.0);
+		
+		Truck gazelnext = new Truck(2, 100, 25.5, 3500);
+		Truck ural = new Truck(3, 200, 35.1, 5000);
+
 		int rasst, rasst2;
 
 		//Присваивание значений внутренним переменным экземпляра класса
@@ -37,10 +75,18 @@ class prIV {
 		//porshe.v = 100;
 		//porshe.rash = 14.0;
 
-		System.out.println("Для расстояния в 10 км нужно: " + lada.fuelNeeded(10));
-		rasst=10;
-		System.out.println("Для расстояния в 10 км нужно: " + lada.fuelNeeded(rasst));
+		System.out.println("Для расстояния в 10 км Ладе нужно: " + lada.fuelNeeded(10));
 
+		System.out.println("Для расстояния в 10 км Урале нужно: " + ural.fuelNeeded(10));
+		System.out.println("Для расстояния в 10 км Газели нужно: " + gazelnext.fuelNeeded(10));
+
+		System.out.println("Урал перевезет " + ural.getCargo() + " кг.");
+
+		System.out.println("Для расстояния в 10 км Поршу нужно: " + porshe.fuelNeeded(10));
+
+		rasst=10;
+		System.out.println("Для расстояния в 10 км Ладе нужно: " + lada.fuelNeeded(rasst));
+                System.out.println("\n");
 
 		//Определяем расстояние
 		//rasst = (int)(lada.v/lada.rash * 100);
