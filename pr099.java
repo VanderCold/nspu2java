@@ -2,6 +2,8 @@ class TwoDShape {
 	private double width;
 	private double height;
 	
+	int common;
+
 	TwoDShape() {
 		width = height = 0.0;
 	}
@@ -38,6 +40,7 @@ class TwoDShape {
 }
 class Triangle extends TwoDShape {
 	String style;
+	int common;
 
 	Triangle() {
 		super();
@@ -54,6 +57,13 @@ class Triangle extends TwoDShape {
 		style = "закрашенный";
 	}
 
+	Triangle(int a, int b) {
+		super.common = a;
+		common = b;
+		System.out.println("Значение super common: " + super.common);
+		System.out.println("Значение common: " + common);
+	}
+
 	double area() {
 		return getWidth() * getHeight()/2;
 	}
@@ -64,6 +74,7 @@ class Triangle extends TwoDShape {
 
 class Rectangle extends TwoDShape {
 	String outline;
+	int common;
 
 	Rectangle() {
                 super();
@@ -80,7 +91,11 @@ class Rectangle extends TwoDShape {
                 outline = "сплошная";
         }
 
+	Rectangle(int a, int b) {
+                super.common = a;
+                common = b;
 
+        }
 
 	Rectangle(String o, double w, double h) {
 		super(w, h);
@@ -104,6 +119,7 @@ class pr099 {
 		Triangle t1 = new Triangle();
 		Triangle t2 = new Triangle("контурный", 8.0, 12.0);
 		Triangle t3 = new Triangle(4.0);
+		Triangle t4 = new Triangle(5, 10);
 		Rectangle r1 = new Rectangle("сплошная", 4.0, 4.0);
 		Rectangle r2 = new Rectangle(5.0);
 
