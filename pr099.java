@@ -1,6 +1,20 @@
 class TwoDShape {
 	private double width;
 	private double height;
+	
+	TwoDShape() {
+		width = height = 0.0;
+	}
+
+	TwoDShape(double w, double h) {
+		width = w;
+		height = h;
+	}
+
+	TwoDShape(double x) {
+		width = height = x;
+	}
+	
 	void showDim() {
 		System.out.println("Ширина и высота: " + width + " " + height);
 	}
@@ -25,10 +39,19 @@ class TwoDShape {
 class Triangle extends TwoDShape {
 	String style;
 
+	Triangle() {
+		super();
+		style = "отсутствует";
+	}
+
 	Triangle(String s, double w, double h) {
+		super(w, h);
 		style = s;
-		setWidth(w);
-		setHeight(h);
+	}
+
+	Triangle(double x) {
+		super(x);
+		style = "закрашенный";
 	}
 
 	double area() {
@@ -42,10 +65,26 @@ class Triangle extends TwoDShape {
 class Rectangle extends TwoDShape {
 	String outline;
 
+	Rectangle() {
+                super();
+                outline = "отсутствует";
+        }
+
+/*        Rectangle(String o, double w, double h) {
+                super(w, h);
+                outline = o;
+        }
+*/
+        Rectangle(double x) {
+                super(x);
+                outline = "сплошная";
+        }
+
+
+
 	Rectangle(String o, double w, double h) {
+		super(w, h);
 		outline = o;
-		setWidth(w);
-                setHeight(h);
 	}
 
 	double area() {
@@ -62,10 +101,11 @@ class Rectangle extends TwoDShape {
 
 class pr099 {
 	public static void main(String[] args) {
-		Triangle t1 = new Triangle("закрашенный", 4.0, 4.0);
+		Triangle t1 = new Triangle();
 		Triangle t2 = new Triangle("контурный", 8.0, 12.0);
+		Triangle t3 = new Triangle(4.0);
 		Rectangle r1 = new Rectangle("сплошная", 4.0, 4.0);
-		Rectangle r2 = new Rectangle("пунктирная", 8.0, 12.0);
+		Rectangle r2 = new Rectangle(5.0);
 
 		//t1.setWidth(4.0);
 		//t1.setHeight(4.0);
@@ -83,6 +123,8 @@ class pr099 {
                 //t2.setHeight(12.0);
                 //t2.style = "контурный";
 
+		t1 = t2;
+
 		System.out.println("Информация об объекте t1: ");
 
 		t1.showStyle();
@@ -97,6 +139,14 @@ class pr099 {
                 t2.showDim();
 
                 System.out.println("Площадь: " + t2.area());
+                System.out.println();
+
+		System.out.println("Информация об объекте t3: ");
+
+                t3.showStyle();
+                t3.showDim();
+
+                System.out.println("Площадь: " + t3.area());
                 System.out.println();
 
 		System.out.println("Информация об объекте r1: ");
