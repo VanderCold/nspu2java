@@ -1,26 +1,30 @@
 class TwoDShape {
 	private double width;
 	private double height;
-	
+	private String name;
 	int common;
 
 	TwoDShape() {
 		width = height = 0.0;
+		name = "абстр. 2д фигура";
 	}
 
-	TwoDShape(double w, double h) {
+	TwoDShape(double w, double h, String n) {
 		width = w;
 		height = h;
+		name = n;
 		System.out.println("Внутри конструктора 2DSHAPE(double w, double h) ");
 	}
 
-	TwoDShape(double x) {
+	TwoDShape(double x, String n) {
 		width = height = x;
+		name = n;
 	}
 	
 	TwoDShape(TwoDShape ob) {
 		width = ob.width;
 		height = ob.height;
+		name = ob.name;
 	}
 
 	void showDim() {
@@ -42,7 +46,13 @@ class TwoDShape {
                         height = 290;
                 else height = h;
         }
-
+	double area() {
+		System.out.println("Метод area() должен быть в подклассе");
+		return 0.0;
+	}
+	String getName() {
+		return name;
+	}
 }
 class Triangle extends TwoDShape {
 	String style;
@@ -54,13 +64,13 @@ class Triangle extends TwoDShape {
 	}
 
 	Triangle(String s, double w, double h) {
-		super(w, h);
+		super(w, h, "треугольник");
 		style = s;
 		System.out.println("Внутри конструктора Triangle(String s, double w, double h) ");
 	}
 
 	Triangle(double x) {
-		super(x);
+		super(x, "треугольник");
 		style = "закрашенный";
 	}
 
@@ -93,6 +103,8 @@ class X {
 	void show() {
 		System.out.println("Значение a: " + a);
 	}
+	void show(String msg) {
+	}
 }
 
 class Y {
@@ -108,8 +120,12 @@ class Z extends X {
 		super(j);
 		b = i;
 	}
-	void show() {
-		System.out.println("Значение a и b: " + a + " " + b);
+	//void show() {
+	//	super.show(); 
+	//	System.out.println("Значение a и b: " + a + " " + b);
+	//}
+	void show(String msg) {
+		System.out.println(msg + b);
 	}
 }
 
@@ -145,13 +161,13 @@ class Rectangle extends TwoDShape {
                 outline = "отсутствует";
         }
 
-/*        Rectangle(String o, double w, double h) {
-                super(w, h);
+        Rectangle(String o, double w, double h) {
+                super(w, h, "прямоугольник");
                 outline = o;
         }
-*/
+
         Rectangle(double x) {
-                super(x);
+                super(x, "прямоугольник");
                 outline = "сплошная";
         }
 
@@ -161,9 +177,9 @@ class Rectangle extends TwoDShape {
 
         }
 
-	Rectangle(String o, double w, double h) {
-		super(w, h);
-		outline = o;
+	Rectangle(Rectangle ob) {
+		super(ob);
+		outline = ob.outline;
 	}
 
 	double area() {
@@ -287,6 +303,7 @@ class pr099 {
 		x.show();
 		System.out.println("При ссылке подкласса");
 		x2.show();
+		x2.show("Перегруженная версия из подкласса: ");
 		x2 = x;
 		System.out.println("При ссылке подкласса");
 		x2.show();
@@ -295,5 +312,21 @@ class pr099 {
 
 		System.out.println("x2.a: " + x2.a);
 		//System.out.println("x2.b: " + x2.b);
+		
+		TwoDShape[] shapes = new TwoDShape[5];
+
+		shapes[0] = new Triangle("контурный", 8.0, 12.0);
+		shapes[1] = new Rectangle(10);
+		shapes[2] = new Rectangle("сплошная", 10, 4);
+		shapes[3] = new Triangle(7.0);
+		shapes[4] = new TwoDShape(10,20, "абстрактная");
+
+		System.out.println();
+
+		for(int i=0; i<shapes.length; i++) {
+			System.out.println("Имя объекта: " + shapes[i].getName());
+			System.out.println("Площадь: " + shapes[i].area());
+			System.out.println();
+		}
 	}
 }
